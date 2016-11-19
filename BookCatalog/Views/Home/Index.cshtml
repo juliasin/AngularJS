@@ -1,0 +1,292 @@
+﻿@{
+    ViewBag.Title = "Books Novel List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+<link href="~/Content/CustomStyle.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+      <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+   <script src="~/Scripts/AngularDemo.js"></script>
+}
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#novel">Novel</a></li>
+    <li><a data-toggle="tab" href="#scfict">Science fiction</a></li>
+    <li><a data-toggle="tab" href="#phifict">Philosophical fiction</a></li>
+    <li><a data-toggle="tab" href="#addbook">Add book</a></li>
+</ul>
+<div ng-app="demoModule" id="body">
+    <div class="tab-content">
+
+           <div id="novel" class="tab-pane fade in active">
+            <div ng-controller="NovelCtrl">
+               
+                <h3>List of Novel Books</h3>
+
+                <table ng-cloak>
+                    <thead>
+                        <tr>
+                            <th style="display: none;">ID</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Year</th>
+                            <th>PublishingOffice</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="items in booksData">
+                            <td hidden="hidden">{{items.Id}}</td>
+                            <td>{{items.Name}}</td>
+                            <td>{{items.Author}}</td>
+                            <td>{{items.Year}}</td>
+                            <td>{{items.PublishingOffice}}</td>
+                            <td>
+                                <button ng-model="$scope.Book"
+                                        ng-click="edit(booksData[$index])">
+                                    Edit
+                                </button>
+                                <button ng-click="delete($index)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div style="border-top: solid 2px #282828; width: 430px; height: 10px"> </div>
+
+                <div ng-show="Book.ID != '' ">
+                    <div>
+                        <h2>Update Book</h2>
+                    </div>
+                    <div hidden="hidden">
+                        <label for="id">ID</label>
+                        <input type="text" data-ng-model="Book.ID" />
+                    </div>
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" data-ng-model="Book.Name" />
+                    </div>
+
+                    <div>
+                        <label for="author">Author</label>
+                        <input type="text" data-ng-model="Book.Author" />
+                    </div>
+
+                    <div>
+                        <label for="year">Year</label>
+                        <input type="text" data-ng-model="Book.Year" />
+                    </div>
+
+                    <div>
+                        <label for="publishingffice">Publishing</label>
+                        <input type="text" data-ng-model="Book.PublishingOffice" />
+                    </div>
+                    <br />
+                    <div>
+                        <button data-ng-click="update()">Update</button>
+                        <button data-ng-click="cancel()">Cancel</button>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+        <div id="phifict" class="tab-pane fade">
+            <div ng-controller="PhiFictCtrl">
+
+                <h3>List of Philisophical Fiction Books</h3>
+
+                <table ng-cloak>
+                    <thead>
+                        <tr>
+                            <th style="display: none;">ID</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Year</th>
+                            <th>PublishingOffice</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="items in booksData">
+                            <td hidden="hidden">{{items.Id}}</td>
+                            <td>{{items.Name}}</td>
+                            <td>{{items.Author}}</td>
+                            <td>{{items.Year}}</td>
+                            <td>{{items.PublishingOffice}}</td>
+                            <td>
+                                <button ng-model="$scope.Book"
+                                        ng-click="edit(booksData[$index])">
+                                    Edit
+                                </button>
+                                <button ng-click="delete($index)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div style="border-top: solid 2px #282828; width: 430px; height: 10px"> </div>
+
+                <div ng-show="Book.ID != '' ">
+                    <div>
+                        <h2>Update Book</h2>
+                    </div>
+                    <div hidden="hidden">
+                        <label for="id">ID</label>
+                        <input type="text" data-ng-model="Book.ID" />
+                    </div>
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" data-ng-model="Book.Name" />
+                    </div>
+
+                    <div>
+                        <label for="author">Author</label>
+                        <input type="text" data-ng-model="Book.Author" />
+                    </div>
+
+                    <div>
+                        <label for="year">Year</label>
+                        <input type="text" data-ng-model="Book.Year" />
+                    </div>
+
+                    <div>
+                        <label for="publishingffice">Publishing</label>
+                        <input type="text" data-ng-model="Book.PublishingOffice" />
+                    </div>
+                    <br />
+                    <div>
+                        <button data-ng-click="update()">Update</button>
+                        <button data-ng-click="cancel()">Cancel</button>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        <div id="scfict" class="tab-pane fade">
+            <div ng-controller="ScFictCtrl">
+
+                <h3>List of Science Fiction Books</h3>
+
+                <table ng-cloak>
+                    <thead>
+                        <tr>
+                            <th style="display: none;">ID</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Year</th>
+                            <th>PublishingOffice</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="items in booksData">
+                            <td hidden="hidden">{{items.Id}}</td>
+                            <td>{{items.Name}}</td>
+                            <td>{{items.Author}}</td>
+                            <td>{{items.Year}}</td>
+                            <td>{{items.PublishingOffice}}</td>
+                            <td>
+                                <button ng-model="$scope.Book"
+                                        ng-click="edit(booksData[$index])">
+                                    Edit
+                                </button>
+                                <button ng-click="delete($index)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div style="border-top: solid 2px #282828; width: 430px; height: 10px"> </div>
+
+                <div ng-show="Book.ID != '' ">
+                    <div>
+                        <h2>Update Book</h2>
+                    </div>
+                    <div hidden="hidden">
+                        <label for="id">ID</label>
+                        <input type="text" data-ng-model="Book.ID" />
+                    </div>
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" data-ng-model="Book.Name" />
+                    </div>
+
+                    <div>
+                        <label for="author">Author</label>
+                        <input type="text" data-ng-model="Book.Author" />
+                    </div>
+
+                    <div>
+                        <label for="year">Year</label>
+                        <input type="text" data-ng-model="Book.Year" />
+                    </div>
+
+                    <div>
+                        <label for="publishingffice">Publishing</label>
+                        <input type="text" data-ng-model="Book.PublishingOffice" />
+                    </div>
+                    <br />
+                    <div>
+                        <button data-ng-click="update()">Update</button>
+                        <button data-ng-click="cancel()">Cancel</button>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+
+
+        <div id="addbook" class="tab-pane fade">
+            <div ng-controller="DemoCtrl">
+
+                <div style="border-top: solid 2px #282828; width: 430px; height: 10px"> </div>
+
+                <div ng-hide="Book.ID != '' ">
+                    <div>
+                        <h2>Add New Book</h2>
+                    </div>
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" data-ng-model="Book.Name" />
+                    </div>
+
+                    <div>
+                        <label for="author">Author</label>
+                        <input type="text" data-ng-model="Book.Author" />
+                    </div>
+
+                    <div>
+                        <label for="year">Year</label>
+                        <input type="text" data-ng-model="Book.Year" />
+                    </div>
+
+                    <div>
+                        <label for="publishingffice">Publishing</label>
+                        <input type="text" data-ng-model="Book.PublishingOffice" />
+                    </div>
+                    <div>
+                        <label for="Genre">Genre</label>
+                   
+                        <select id="genre" name="genre" data-ng-model="Book.Genre.Name">
+                            <option>Novel</option>
+                            <option>Science fiction</option>
+                            <option>Philosophical fiction</option>
+                        </select>
+                        <!--<input type="text" data-ng-model="Book.Genre.Name" />-->
+                    </div>
+                    <br />
+                    <div> 
+                        <button data-ng-click="save()">Save</button>
+                        <button data-ng-click="clear()">Clear</button>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+
+    </div>
+</div>
